@@ -1,0 +1,55 @@
+/**
+ * @param {number[]} groupSizes
+ * @return {number[][]}
+ */
+var groupThePeople = function(groupSizes) {
+    
+    // instances of holder values
+    
+    const map = new Map()
+    let res = []
+
+    // Loop through the elements of 'groupSize' array 
+
+    for (let i = 0; i < groupSizes.length; i++ ){
+        
+        //check if the values exist 
+
+        if(!map.has(groupSizes[i])){ 
+            map.set(groupSizes[i],[i])
+
+        //  if the element does not exist
+        //  set the map's key and value pair 
+
+        }else {
+            if (map.get(groupSizes[i]).length === groupSizes[i]){
+
+        //  check if the element's array length matches the group size 
+
+                res.push(map.get(groupSizes[i]))
+                map.set(groupSizes[i],[i])
+
+        //  if the size match push the array to 'result' array   
+        //  override the array with set 
+
+            }   else { 
+
+        //  else if size is less than, push 'person/index' 
+
+                map.get(groupSizes[i]).push(i)
+            }
+        }
+    }
+        //  map's values are looped and pushed to the res array 
+        //  finally return the result 
+
+    for(let value of map.values()){
+        if(value.length >= 1){
+
+        //  accept arrays that are greater than or equal too
+    
+            res.push(value)
+        }
+    }
+    return res
+};
