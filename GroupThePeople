@@ -1,0 +1,76 @@
+/**
+ * @param {number[]} groupSizes
+ * @return {number[][]}
+ */
+// var groupThePeople = function(groupSizes) {
+//     // check if the element exists 
+//     // add the element to its array if its empty or not 
+//     // finally check if the size meets the elements groupSize
+//     // if so add to result and clear the array with a new array
+
+//     const map = new Map()
+//     let res = []
+    
+//     groupSizes.forEach((size, i)=>{
+
+//         if(!map.has(size)){
+//             map.set(size, [])
+//         }
+//         //no matter an empty or full gets 'i' 
+//         map.get(size).push(i)
+
+//         if(map.get(size).length === size){
+//             res.push(map.get(size))
+//             map.set(size,[])
+//         }
+
+//     })
+//     return res 
+// };
+
+
+// const groupThePeople =(groupSizes)=> {
+//     //check if element exist in object
+//     //always add element to empty or full array 
+//     // check length to push and clear 
+// //catch zeros 
+// if(groupSizes.length < 1) return []
+//     const obj = {} 
+//     let res = [] 
+
+//     groupSizes.forEach((size , i )=>{
+//         if(obj[size] === undefined){
+//             obj[size] = []
+//         }
+//         obj[size].push(i)
+//         if(obj[size].length === size){
+//             res.push(obj[size])
+//             obj[size]=[]
+//         }
+
+//     })
+//     return res
+// }
+
+// using a for loop instead of forEach 
+
+function groupThePeople(groupSizes){
+    if(groupSizes.length < 1) return []
+
+    const obj = {}
+    let res = [] 
+
+
+    for( let i = 0; i < groupSizes.length; i++){ 
+        let g = groupSizes[i]
+        if(obj[g] === undefined){ 
+            obj[g] = []
+        }
+        obj[g].push(i)
+        if(obj[g].length === g){
+            res.push(obj[g])
+            obj[g] = []
+        }
+    }
+return res 
+}
