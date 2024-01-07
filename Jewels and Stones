@@ -1,0 +1,22 @@
+First attempt Jewels and Stones 
+
+/**
+ * @param {string} jewels
+ * @param {string} stones
+ * @return {number}
+ */
+var numJewelsInStones = function(jewels, stones) {
+
+    const map = new Map()
+    let count = 0
+
+    for(let lttr of jewels){
+        map.set(lttr)
+    }
+    for(let stone of stones){
+        if(map.has(stone)){
+            count++ 
+        }
+    }
+    return count
+};
