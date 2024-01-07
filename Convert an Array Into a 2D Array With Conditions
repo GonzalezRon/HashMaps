@@ -1,0 +1,124 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+// var findMatrix = function(nums) {
+//     //let res = [] 
+//     const map = new Map()
+     
+//      nums.forEach((e,i)=>{
+//          if(!map.has(e)){
+//              map.set(e,1)
+//          }else{
+//              map.set(e,map.get(e)+1)
+//          } 
+//      }) 
+
+//      const res = []
+
+//      for( let n of map.keys()){
+//          let count = map.get(n)
+
+//          for(let i = 0; i < count; i++){
+//              if(res[i]) res[i].push(n)
+//              else res[i] = [n]
+//          }
+//      }
+// return res;
+// };
+
+
+// initiate the map and res array
+//check if the element exists : no set the element and val to 0
+//check if the result of the element is greater than or equal to the res array
+// then push the elements into the array 
+// if false, get the array and push the element 
+//increase the count 
+//return the res 
+
+
+
+// const findMatrix = (nums)=> {
+//     const map = new Map()
+//     let res = [] 
+
+//     for(let i = 0 ; i < nums.length; i++){
+
+//         if(!map.has(nums[i])){  //check and set count as 0 if false 
+//             map.set(nums[i], 0) 
+//         }
+//         if(map.get(nums[i]) >= res.length ){
+//             res.push([nums[i]]) //if count is larger than res size 
+//                     // then push another array at its index/count 
+//         }else{
+//             res[map.get(nums[i])].push(nums[i]) 
+
+//             //push the element at its count 
+//             //ex: res[1].push(e) => res = [1,2,3 [e]]
+//         }
+//         map.set(nums[i], map.get(nums[i]) + 1)
+
+//         //increment the counters 
+//     }
+//     return res 
+// }
+
+
+
+
+//re-write the equation 
+
+//[1,2,3,1,5,2,3]
+//[[1,2,3,5], [1,2,3]]
+
+
+const findMatrixR =(nums)=>{
+    resultArray = [] 
+    const map = new Map()
+
+    nums.forEach((e)=>{
+
+        if(!map.has(e)){
+            map.set(e,0) // count set to 0 as 'index'
+        }
+        if(map.get(e) >= resultArray.length){
+            resultArray.push([e])
+            // push an array and its element at maps count
+        }else{
+            resultArray[map.get(e)].push(e)
+            //add an element to the array at count 
+        }
+        map.set(e, map.get(e)+1)
+        //increment the counter 
+    })
+    return resultArray
+}
+
+
+
+//[]
+
+
+const findMatrix = function(nums){
+    let resultArr = [] 
+    let obj = {}
+    
+
+    for(let num of nums){
+        //check map
+        if(obj[num] === undefined ){
+            obj[num] = 0 
+        }
+        //check if the resultArray needs a new array 
+        if(obj[num] >= resultArr.length){
+            resultArr.push([num])
+
+        }else{
+            //push a number into an resultArr
+            resultArr[obj[num]].push(num)
+        }
+        //increment counter 
+        obj[num]++ //repeating integers create a new array 
+    }
+    return resultArr
+}
