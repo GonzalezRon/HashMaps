@@ -1,0 +1,45 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {number}
+ */
+var minSteps = function(s, t) {
+
+    // steps : number of steps requied to make an anagram
+    // map: holds elements and counters
+    let steps = 0
+    const map = new Map()
+     
+
+
+    // loop each element in first string
+    // set map and counter
+    // add to counter 
+
+    for(let i = 0; i < s.length; i++){
+        if(!map.has(s[i])){
+            map.set(s[i],1)
+        }else{
+            map.set(s[i], map.get(s[i]) + 1) 
+        }
+    }
+    // loop each element in second string
+    // subtract and delete elements that exist 
+    // add one to steps if elements don't exist 
+
+    for(let j = 0; j < t.length; j++){ 
+
+        if(map.has(t[j])){
+            map.set( t[j],map.get(t[j])-1)
+
+            if(map.get(t[j]) == 0){
+                map.delete(t[j])
+            }
+        }else{
+            steps++
+        }
+    }
+    //return the number of steps or different elements
+    // map keeps count of elements in first string
+    return steps
+};
