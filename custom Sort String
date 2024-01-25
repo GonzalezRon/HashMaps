@@ -1,0 +1,60 @@
+/**
+ * @param {string} order
+ * @param {string} s
+ * @return {string}
+ */
+var customSortString = function(order, s) {
+
+      let res_Arr = []
+      const map = new Map()
+    /**
+        Pattern to add entries to map
+        and add 1 to counter, else set counter 
+    */
+
+      for(let i = 0; i < s.length; i++){
+          if(!map.has(s[i])){
+              map.set(s[i], 1)
+          }else{
+              map.set(s[i],map.get(s[i])+1)
+          }
+      }
+
+    /**
+        copying "order's"  order of elements 
+        however; the while loop allows repetitive characters
+        and subtracts from count 
+     */
+      for( let j = 0; j < order.length; j++){
+          if(map.has(order[j])){
+
+             while(map.get(order[j]) > 0){
+                 res_Arr.push(order[j])
+                 map.set(order[j],map.get(order[j]) - 1)
+
+                 //optimization: garbage collection 
+                 if(map.get(order[j]) == 0) map.delete(order[j])
+             }
+          }
+      }
+
+    /**
+        loop unused elements 
+        pushes elements into res_Arr
+        then returns as String
+
+     */
+
+      for(let k of map.keys()){
+          while(map.get(k) > 0){
+              res_Arr.push(k)
+              map.set(k,map.get(k) -1)
+          }
+      }
+
+      return res_Arr.join('')
+
+
+
+
+};
